@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 Login Page
+
+  form(action='' method='POST')
+    label Username
+        input(type='text' name='username' required=true)
+    label Password 
+        input(type='password' name='password' required=true)
+    button submit
