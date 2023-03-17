@@ -35,9 +35,37 @@ const strategy = new LocalStrategy(verifyCallback);
 
 passport.use(strategy);
 
+/**
+* JWT Strategy
+*/
+const jwtOptions = {
+    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+    secretOrKey: 'secret',
+};
+const jwtStrategy = new JWTStrategy(jwtOptions, (payload, done) => {
+    console.log(payload)
+    Admin.findOne({_id: payload.sub})
+        .then((user) => {
+            if(user) {
+                return done(null, user);
+            } else {
+                return done(null, false);
+            }
+        })
+        .catch(err => done(err, null));
+});
+passport.use(jwtStrategy);
+
+/* 
+module.exports = (passport) => {
+    passport.use(jwtStrategy)
+}
+*/
+
+/*
 passport.use(new JWTStrategy({
-        jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-        secretOrKey : 'your_jwt_secret' // TODO: Change to .env file secret
+        jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken('JWT'),
+        secretOrKey : 'secret' // TODO: Change to .env file secret
     },
     function (jwt_payload, done) {
         console.log(`JWT PAYLOAD: ${jwt_payload}`)
@@ -57,6 +85,7 @@ passport.use(new JWTStrategy({
             })
     }
 ));
+*/
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
