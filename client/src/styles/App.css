@@ -50,3 +50,15 @@ header {
 .Login .error-message p {
   margin: 0;
 }
+
+/* POSTS PAGE */
+.posts-allBlogs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+.posts-individualBlog {
+  padding: 1rem;
+  border: 1px solid red;
+}

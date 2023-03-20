@@ -8,8 +8,8 @@ const jwtUtils = require('../utils/jwtUtils');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.json('YO YO YO') // can be seen on the react
-  //res.render('index', { title: 'Express' });
+  res.json('YO YO YO') 
+  // TODO: Get all posts and set them to front end so they can be displayed
 });
 
 /* POST home page. */

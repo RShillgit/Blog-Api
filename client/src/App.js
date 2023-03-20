@@ -26,6 +26,9 @@ function App() {
           <a href='/protected'>
             <button>Protected</button>
           </a>
+          <a href='/posts'>
+            <button>Blogs</button>
+          </a>
       </div>
 
       <div className="home-content">
