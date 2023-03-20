@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 
 function Login() {
 
@@ -25,13 +26,31 @@ function Login() {
         })
         .then((res) => res.json())
         .then((data) => {
-            setMessage(
-                <div >
-                    <p>{data.token}</p>
-                    <p>{data.expiresIn}</p>
-                    <p>{data.error_message}</p>
-                </div>
-            );
+
+            // If the user info is correct
+            if (data.token && data.expiresIn) {
+
+                // Save token and expiration date in local storage
+                const expires = moment().add(data.expiresIn);
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('expires', JSON.stringify(expires.valueOf()));
+
+                setMessage(
+                    <div>
+                        <p>{data.token}</p>
+                        <p>{data.expiresIn}</p>
+                    </div>
+                );
+            }
+
+            // Else, render error message
+            else {
+                setMessage(
+                    <div className="error-message">
+                        <p>{data.error_message}</p>
+                    </div>
+                );
+            }
         })
     }
 

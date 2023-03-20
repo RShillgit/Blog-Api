@@ -22,6 +22,9 @@ function App() {
           <a href='/login'>
             <button>Login</button>
           </a>
+          <a href='/protected'>
+            <button>Protected</button>
+          </a>
       </div>
     </div>
   );

@@ -10,3 +10,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.error-message {
+  color: red;
+}

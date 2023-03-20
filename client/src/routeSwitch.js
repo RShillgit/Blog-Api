@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import Login from "./components/login";
+import Protected from "./components/protected";
 
 
 const RouteSwitch = () => {
@@ -9,6 +10,7 @@ const RouteSwitch = () => {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/protected" element={<Protected />} />
       </Routes>
     </BrowserRouter>
   );
