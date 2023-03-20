@@ -39,6 +39,7 @@ function Login() {
                     <div>
                         <p>{data.token}</p>
                         <p>{data.expiresIn}</p>
+                        <p>Successful, redirect somewhere</p>
                     </div>
                 );
             }
@@ -55,16 +56,27 @@ function Login() {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Username <input type='text' name="username" onChange={usernameChange}></input>
-                </label>
-                <label>
-                    Password <input type='password' name="password" onChange={passwordChange}></input>
-                </label>
-                <button>Submit</button>
-            </form>
+        <div className="Login">
+
+            <header>
+                <h1>Login Page</h1>
+            </header>
+            
+            <div className="login-form">
+                <form onSubmit={handleSubmit} id='admin-login-form'>
+                    <label>
+                        Username <input type='text' name="username" onChange={usernameChange}></input>
+                    </label>
+                    <label>
+                        Password <input type='password' name="password" onChange={passwordChange}></input>
+                    </label>
+
+                </form>
+                <div className="form-buttons">
+                    <a href="/"><button>Cancel</button></a>
+                    <button form="admin-login-form">Submit</button>
+                </div>
+            </div>
 
             {message}
 
