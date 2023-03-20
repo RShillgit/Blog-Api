@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import React, { useState, useEffect } from "react";
-import './App.css';
+import './styles/App.css';
 
 function App() {
 
@@ -16,9 +15,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <h1>{message}</h1>
       </header>
+
+      <div className='navigation'>
+          <a href='/login'>
+            <button>Login</button>
+          </a>
+      </div>
     </div>
   );
 }
