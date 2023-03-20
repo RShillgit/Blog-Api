@@ -6,21 +6,28 @@ const Protected = () => {
 
     // On mount, get the protected route and see if there is a token
     useEffect(() => {
+
         const idToken = localStorage.getItem("token");
 
+        // If there is a token, add it to the auth header of the get request
         if (idToken) {
             
-            const splitToken = idToken.split(' ');
-            const stringToken = splitToken[1];
-            console.log(stringToken);
-
-            
+            fetch("http://localhost:8000/test", {
+                method: 'GET',
+                headers: {Authorization: idToken}
+            })
+            .then((res) => res.json())
+            .then((data) => setResponse(data));
         }
 
-        fetch("http://localhost:8000/test")
-        .then((res) => console.log(res));
-        //.then((res) => res.json())
-        //.then((data) => console.log(data));
+        // Else render not authorized information
+        else {
+            setResponse(
+                <div>
+                    <h1>You are not authorized</h1>
+                </div>
+            )
+        }
 
     }, [])
 

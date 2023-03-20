@@ -43,7 +43,6 @@ const jwtOptions = {
     secretOrKey: 'secret',
 };
 const jwtStrategy = new JWTStrategy(jwtOptions, (payload, done) => {
-    console.log(payload)
     Admin.findOne({_id: payload.sub})
         .then((user) => {
             if(user) {
