@@ -8,7 +8,7 @@ const jwtUtils = require('../utils/jwtUtils');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.json('YO YO YO') // can be seen on the react app
+  res.json('YO YO YO') // can be seen on the react
   //res.render('index', { title: 'Express' });
 });
 
