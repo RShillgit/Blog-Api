@@ -50,11 +50,14 @@ const Post = () => {
 
             <div className="posts-allBlogs">
                 {blogs.map(blog => {
+                    const href = `/posts/${blog._id}`;
                     return (
-                        <div className="posts-individualBlog" key={blog._id}>
-                            <p>{blog.title}</p>
-                            <p>{blog.text}</p>
-                            <p>{formatDate(blog.timestamp)}</p>
+                        <div className="posts-individualBlog" key={blog._id} blogid={blog._id}>
+                            <a href={href}>
+                                <p>{blog.title}</p>
+                                <p>{blog.text}</p>
+                                <p>{formatDate(blog.timestamp)}</p>
+                            </a>
                         </div>
                     )
                 })}

@@ -31,8 +31,12 @@ router.post('/', function(req, res, next) {
 });
 
 /* GET specific post. */
-router.put('/:id', function(req, res, next) {
-    res.json(`Received a GET HTTP method on post ${req.params.id}`);
+router.get('/:id', function(req, res, next) {
+    post.findOne({_id: req.params.id})
+    .then((blog) => {        
+        res.json(blog);
+    })
+    //res.json(`Received a GET HTTP method on post ${req.params.id}`);
 });
 
 /* POST specific post. */
