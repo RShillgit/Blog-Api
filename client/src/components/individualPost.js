@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const IndividualPost = () => {
 
-    const navigate = useNavigate();
     const {id} = useParams();
     const [blogInfo, setBlogInfo] = useState();
     const [commenterName, setCommenterName] = useState("");
     const [commenterComment, setCommenterComment] = useState("");
 
-    // Get the selected blog on render and 
+    // Get the selected blog on render 
     useEffect(() => {
 
         fetch(`http://localhost:8000/posts/${id}`)

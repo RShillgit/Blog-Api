@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
@@ -35,13 +37,8 @@ function Login() {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('expires', JSON.stringify(expires.valueOf()));
 
-                setMessage(
-                    <div>
-                        <p>{data.token}</p>
-                        <p>{data.expiresIn}</p>
-                        <p>Successful, redirect somewhere</p>
-                    </div>
-                );
+                // Redirect to home page
+                navigate('/');
             }
 
             // Else, render error message

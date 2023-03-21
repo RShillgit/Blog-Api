@@ -58,16 +58,18 @@ router.post('/:id', function(req, res, next) {
                     individualPost.save()
                 })
         )
-    //res.redirect(`/posts/${req.params.id}`);
+    next();
 });
 
 /* PUT specific post. */
+// TODO
 //  Allows admins to update posts 
 router.put('/:id', function(req, res, next) {
     res.json(`Received a PUT HTTP method on post ${req.params.id}`);
 });
 
 /* DELETE specific post. */
+// TODO
 // Allows admins to delete posts
 router.delete('/:id', function(req, res, next) {
     res.json(`Received a DELETE HTTP method ${req.params.id}`);

@@ -93,28 +93,6 @@ router.post('/login', function (req, res, next) {
         return res.status(401).json({success: false, error_message: "Invalid Username/Password Combination"})
       }
     })
-
-  /*
-  passport.authenticate('local', {session: false}, (err, user, info) => {
-    if (err || !user) {
-        return res.status(400).json({
-            message: 'Something is not right',
-            user : user
-        });
-    }
-  
-    req.logIn(user, {session: false}, (err) => {
-      if (err) {
-          res.send(err);
-      }
-      // generate a signed son web token with the contents of user object and return it in the response
-      const token = jwt.sign(user.toJSON(), 'secret', {expiresIn: 604800}); // Expires in 1 week  // TODO: Change this secret to .env file secret
-      return res.json({user, token}); // TODO: SAVE TOKEN??? WHERE IS THE JWT TOKEN STORED???
-    });
-
-  })(req, res);
-  */
-
 });
 
 /* GET test page */

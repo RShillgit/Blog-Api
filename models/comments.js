@@ -12,7 +12,7 @@ const CommentSchema = new Schema({
 // Formats date to MM/DD/YYYY
 CommentSchema.methods.formatDate = (timestamp) => {
 
-    // TODO: Maybe add the hours and minutes to get the specific time of the comment
+    // TODO: Since this is being used on the front end it can probably be deleted here
 
     // Day
     let day = timestamp.getDate();

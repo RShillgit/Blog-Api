@@ -3,11 +3,26 @@ import './styles/App.css';
 
 function App() {
 
-  const [blogs, setBlogs] = useState("");
   const [allBlogs, setAllBlogs] = useState();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loginLogoutButton, setLoginLogoutButton] = useState();
 
   // Get all blogs
   useEffect(() => {
+
+    // Check if there is a token in local storage
+    const token = localStorage.getItem("token");
+    if (token) {
+      setLoginLogoutButton(
+        <button onClick={logout}>Logout</button>
+      )
+    }
+    else setLoginLogoutButton(
+      <a href='/login'>
+        <button>Admin Login</button>
+      </a>
+    );
+
     fetch("http://localhost:8000")
       .then((res) => res.json())
       .then((data) => {
@@ -20,6 +35,7 @@ function App() {
                         <p>{blog.title}</p>
                         <p id="individualBlog-text">{blog.text}</p>
                         <p>{formatDate(blog.timestamp)}</p>
+                        <p>{blog.comments.length} Comments</p>
                     </a>
                 </div>
             )
@@ -29,6 +45,9 @@ function App() {
 
   // Formats timestamp into MM/DD/YYYY
   const formatDate = (timestamp) => {
+
+    // TODO: Maybe send this function as props so there is less code reuse
+    // TODO: Maybe add the hours and minutes to get the specific time of the comment
 
     const blogDate = new Date(timestamp);
 
@@ -54,6 +73,13 @@ function App() {
     return formattedDate;
   }
 
+  // Removes token from local storage
+  const logout = (e) => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expires');
+    window.location.reload();
+  }
+
   return (
     <div className="App">
 
@@ -62,9 +88,8 @@ function App() {
       </header>
 
       <div className='navigation'>
-          <a href='/login'>
-            <button>Admin Login</button>
-          </a>
+        {loggedIn}
+          {loginLogoutButton}
           <a href='/protected'>
             <button>Protected</button>
           </a>
