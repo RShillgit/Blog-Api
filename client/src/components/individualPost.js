@@ -104,7 +104,6 @@ const IndividualPost = () => {
     // Delete Comment
     const deleteComment = (e) => {
         const commentId = e.target.parentElement.getAttribute('dataid');
-        console.log(commentId)
 
         fetch(`http://localhost:8000/posts/${id}/comments/${commentId}`, {
             method: 'DELETE',

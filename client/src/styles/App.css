@@ -99,3 +99,20 @@ header {
   border: 1px solid blueviolet;
   padding: 1rem;
 }
+
+/* CREATE BLOG PAGE */
+.createBlog-page {
+  display: none;
+}
+.createBlog-page #create-blog-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.createBlog-page .form-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem;
+}

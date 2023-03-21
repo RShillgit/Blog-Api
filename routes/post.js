@@ -1,24 +1,34 @@
 var express = require('express');
 var router = express.Router();
+const passport = require('passport');
 const post = require('../models/posts');
 const comment = require('../models/comments');
 const { find } = require('../models/admin');
 
+
 /* GET posts */
+/*
 router.get('/', function(req, res, next) {
     post.find({}).lean()
     .then((blogs) => {        
         res.json(blogs);
     })
 });
+*/
 
-/* POST home page. */
+/* GET that allows admins to access create blog page */
+router.get('/', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    res.json('You are authorized to create a post');
+})
+
+/* POST that creates a post. */
 router.post('/', function(req, res, next) {
 
-    // TODO: TEMPORARY - Delete once no longer creating blog posts, or only allow admins to access
+    console.log(req.body)
+
     const newPost = new post({
-        title: req.body.title,
-        text: req.body.content,
+        title: req.body.blogTitle,
+        text: req.body.blogContent,
         timestamp: Date.now(),
         comments: [],
     })
@@ -27,7 +37,6 @@ router.post('/', function(req, res, next) {
             res.send(user);
         })
         .catch(err => next(err));
-
 });
 
 /* GET specific post. */
@@ -39,8 +48,7 @@ router.get('/:id', function(req, res, next) {
     })
 });
 
-/* POST specific post. */
-// Used to create comments on a specific post
+/* POST that creates a comment on a specific post. */
 router.post('/:id', function(req, res, next) {
 
     // Create a new comment with the front end info
@@ -62,16 +70,14 @@ router.post('/:id', function(req, res, next) {
     next();
 });
 
-/* PUT specific post. */
+/* PUT that updates a specific post. */
 // TODO
-//  Allows admins to update posts 
 router.put('/:id', function(req, res, next) {
     res.json(`Received a PUT HTTP method on post ${req.params.id}`);
 });
 
-/* DELETE specific post. */
+/* DELETE that deletes a specific post. */
 // TODO
-// Allows admins to delete posts
 router.delete('/:id', function(req, res, next) {
     res.json(`Received a DELETE HTTP method ${req.params.id}`);
 });

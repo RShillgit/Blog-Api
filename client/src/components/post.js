@@ -1,67 +1,88 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Post = () => {
 
-    const [blogs, setBlogs] = useState([]);
+    const navigate = useNavigate();
+    const [blogTitle, setBlogTitle] = useState("");
+    const [blogContent, setBlogContent] = useState("");
+    const token = useRef();
+
+    // Before mount check for token
+    useLayoutEffect(() => {
+        const idToken = localStorage.getItem("token");
+        token.current = idToken;
+    }, [])
 
     // On mount fetch all blog posts
     useEffect(() => {
-        fetch('http://localhost:8000/posts')
-        .then((res) => res.json())
-        .then((data) => setBlogs(data));
+
+        // If there is a token, add it to the auth header of the get request
+        if (token.current) {
+            
+            fetch("http://localhost:8000/test", {
+                method: 'GET',
+                headers: {Authorization: token.current}
+            })
+            // If the status is good, render the page content
+            .then((res) => {
+                if (res.status === 200) {
+                    const pageContent = document.querySelector('.createBlog-page');
+                    pageContent.style.display = 'block';
+                }
+            }) 
+        }
+
+        // Else navigate back to home
+        else {
+            navigate('/')
+        }
+
     }, [])
 
-    // Formats timestamp into MM/DD/YYYY
-    const formatDate = (timestamp) => {
+    // Title input change
+    const blogTitleChange = (e) => {
+        setBlogTitle(e.target.value);
+    }
 
-        const blogDate = new Date(timestamp);
-  
-        // Day
-        let day = blogDate.getDate();
-    
-        // Month
-        let month = blogDate.getMonth() + 1;
-    
-        // Year
-        let year = blogDate.getFullYear();
-    
-        // 2 digit months and days
-        if (day < 10) {
-            day = '0' + day;
-        }
-        if (month < 10) {
-            month = `0${month}`;
-        }
-    
-        let formattedDate = `${month}/${day}/${year}`;
-    
-        return formattedDate;
+    // Content input change
+    const blogContentChange = (e) => {
+        setBlogContent(e.target.value);
+    }
+
+    const formSubmit = (e) => {
+        e.preventDefault();
+
+        const blogPostInfo = {blogTitle, blogContent};
+
+        // POST request to create the new blog
+        fetch('http://localhost:8000/posts', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(blogPostInfo)
+        })
+        // Then navigate back to home
+        .then(navigate('/'));
     }
 
     return (
-        <div>
-            <header><h1>BLOGS</h1></header>
-
-            <div className='navigation'>
-                <a href='/'>
-                    <button>Home</button>
-                </a>
+        <div className="createBlog-page">
+           
+            <header><h1>Create Blog Post</h1></header>
+            
+            <form onSubmit={formSubmit} id='create-blog-form'>
+                <label>
+                    Title: <input type="text" name="title" onChange={blogTitleChange} required={true}></input>
+                </label>
+                <label>
+                    Content: <input type="text" name="content" onChange={blogContentChange} required={true}></input>
+                </label>
+            </form>
+            <div className="form-buttons">
+                <a href="/"><button>Cancel</button></a>
+                <button form="create-blog-form">Create</button>
             </div>
-
-            <div className="posts-allBlogs">
-                {blogs.map(blog => {
-                    const href = `/posts/${blog._id}`;
-                    return (
-                        <div className="posts-individualBlog" key={blog._id} blogid={blog._id}>
-                            <a href={href}>
-                                <p>{blog.title}</p>
-                                <p>{blog.text}</p>
-                                <p>{formatDate(blog.timestamp)}</p>
-                            </a>
-                        </div>
-                    )
-                })}
-            </div>
+                    
         </div>
     )
 }

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './styles/App.css';
 
 function App() {
 
   const [allBlogs, setAllBlogs] = useState();
   const [loginLogoutButton, setLoginLogoutButton] = useState();
+  const [createBlogButton, setCreateBlogButton] = useState();
+  const deletePostButton = useRef();
 
   // Get all blogs
   useEffect(() => {
@@ -15,6 +17,12 @@ function App() {
       setLoginLogoutButton(
         <button onClick={logout}>Logout</button>
       )
+      setCreateBlogButton(
+        <a href="/posts">
+          <button>Create Blog</button>
+        </a>
+      )
+      deletePostButton.current = <button onClick={deletePost}>Delte</button>
     }
     else setLoginLogoutButton(
       <a href='/login'>
@@ -30,6 +38,7 @@ function App() {
             const href = `/posts/${blog._id}`;
             return (
                 <div className="home-individualBlog" key={blog._id} blogid={blog._id}>
+                  {deletePostButton.current}
                     <a href={href}>
                         <p>{blog.title}</p>
                         <p id="individualBlog-text">{blog.text}</p>
@@ -79,6 +88,24 @@ function App() {
     window.location.reload();
   }
 
+  const deletePost = (e) => {
+    const postId = e.target.parentElement.getAttribute('blogid');
+    console.log(postId);
+
+    /*
+    fetch(`http://localhost:8000/posts/${postId}`, {
+      method: 'DELETE',
+      headers: { "Content-Type": "application/json" },
+    })
+    .then(window.location.reload())
+    */
+
+  }
+
+  const createBlog = (e) => {
+    console.log(e.target)
+  }
+
   return (
     <div className="App">
 
@@ -87,13 +114,11 @@ function App() {
       </header>
 
       <div className='navigation'>
-          {loginLogoutButton}
+          {createBlogButton}
           <a href='/protected'>
             <button>Protected</button>
           </a>
-          <a href='/posts'>
-            <button>Blogs</button>
-          </a>
+          {loginLogoutButton}
       </div>
 
       <div className="home-content">
