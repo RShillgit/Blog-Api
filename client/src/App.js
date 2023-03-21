@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import './styles/App.css';
 
 function App() {
 
+  const navigate = useNavigate();
   const [allBlogs, setAllBlogs] = useState();
   const [loginLogoutButton, setLoginLogoutButton] = useState();
   const [createBlogButton, setCreateBlogButton] = useState();
-  const deletePostButton = useRef();
+  const adminButtons = useRef();
 
   // Get all blogs
   useEffect(() => {
 
     // Check if there is a token in local storage
     const token = localStorage.getItem("token");
+
+    // If there is set admin functionality
     if (token) {
       setLoginLogoutButton(
         <button onClick={logout}>Logout</button>
@@ -22,7 +26,10 @@ function App() {
           <button>Create Blog</button>
         </a>
       )
-      deletePostButton.current = <button onClick={deletePost}>Delte</button>
+      adminButtons.current = <div className="admin-buttons">
+        <button onClick={editPost}>Edit</button>
+        <button onClick={deletePost}>Delte</button>
+      </div>
     }
     else setLoginLogoutButton(
       <a href='/login'>
@@ -38,7 +45,7 @@ function App() {
             const href = `/posts/${blog._id}`;
             return (
                 <div className="home-individualBlog" key={blog._id} blogid={blog._id}>
-                  {deletePostButton.current}
+                  {adminButtons.current}
                     <a href={href}>
                         <p>{blog.title}</p>
                         <p id="individualBlog-text">{blog.text}</p>
@@ -99,6 +106,14 @@ function App() {
     })
     .then(window.location.reload())
 
+  }
+
+  const editPost = (e) => {
+    const selectedPost = e.target.parentElement.parentElement;
+    const postId = selectedPost.getAttribute('blogid');
+
+    // Navigate to update route
+    navigate(`/posts/${postId}/update`);
   }
 
   return (

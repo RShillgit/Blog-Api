@@ -4,6 +4,7 @@ import IndividualPost from "./components/individualPost";
 import Login from "./components/login";
 import Post from "./components/post";
 import Protected from "./components/protected";
+import UpdatePost from "./components/updatePost";
 
 
 const RouteSwitch = () => {
@@ -14,6 +15,7 @@ const RouteSwitch = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/posts" element={<Post />} />
         <Route path="/posts/:id" element={<IndividualPost />} />
+        <Route path="/posts/:id/update" element={<UpdatePost />} />
         <Route path="/protected" element={<Protected />} />
       </Routes>
     </BrowserRouter>

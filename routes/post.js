@@ -71,9 +71,13 @@ router.post('/:id', function(req, res, next) {
 });
 
 /* PUT that updates a specific post. */
-// TODO
 router.put('/:id', function(req, res, next) {
-    res.json(`Received a PUT HTTP method on post ${req.params.id}`);
+
+    post.findOneAndUpdate({ _id: req.params.id }, {
+        title: req.body.title,
+        text: req.body.content
+    })
+    .catch(err => console.log(err))
 });
 
 /* DELETE that deletes a specific post. */
