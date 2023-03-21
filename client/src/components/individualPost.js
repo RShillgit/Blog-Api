@@ -13,7 +13,7 @@ const IndividualPost = () => {
         .then((res) => res.json())
         .then((data) => {
             setBlogInfo(
-                <div>
+                <div className="individualBlog">
                     <p>{data.title}</p>
                     <p>{data.text}</p>
                     <p>{formatDate(data.timestamp)}</p>
@@ -52,7 +52,12 @@ const IndividualPost = () => {
 
     return (
         <div>
-            <p>Individaul Post</p>
+            <header><h1>Individual Post</h1></header>
+            <div className="navigation">
+                <a href="/">
+                    <button>Home</button>
+                </a>
+            </div>
             {blogInfo}
             <h3>Here is where each comment will go</h3>
         </div>

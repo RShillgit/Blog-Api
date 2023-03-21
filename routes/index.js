@@ -1,6 +1,7 @@
 var express = require('express');
 const passport = require('passport');
 const admin = require('../models/admin');
+const posts = require('../models/posts');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 const passwordUtils = require('../utils/passwordUtils');
@@ -8,8 +9,13 @@ const jwtUtils = require('../utils/jwtUtils');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.json('YO YO YO') 
-  // TODO: Get all posts and set them to front end so they can be displayed
+
+  posts.find({})
+  .then(blogs => {
+    res.json(blogs)
+  })
+  .catch(err => console.log(err))
+
 });
 
 /* POST home page. */
