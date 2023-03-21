@@ -89,21 +89,16 @@ function App() {
   }
 
   const deletePost = (e) => {
+
     const postId = e.target.parentElement.getAttribute('blogid');
     console.log(postId);
 
-    /*
     fetch(`http://localhost:8000/posts/${postId}`, {
       method: 'DELETE',
       headers: { "Content-Type": "application/json" },
     })
     .then(window.location.reload())
-    */
 
-  }
-
-  const createBlog = (e) => {
-    console.log(e.target)
   }
 
   return (
