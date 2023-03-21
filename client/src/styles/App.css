@@ -82,3 +82,20 @@ header {
   align-items: center;
   flex-direction: column;
 }
+.post-comment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid black
+}
+.individualBlog-allComments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.individualBlog-individualComment {
+  border: 1px solid blueviolet;
+  padding: 1rem;
+}

@@ -34,11 +34,11 @@ router.delete('/', function(req, res, next) {
 });
 
 
-/* GET Register */
+/* GET Register */ // TODO: TEMPORARY
 router.get('/register', (req, res, next) => {
   res.render('register');
 })
-/* POST Register */
+/* POST Register */ // TODO: TEMPORARY
 router.post('/register', (req, res, next) => {
   const saltHash = passwordUtils.genPassword(req.body.password);
 
