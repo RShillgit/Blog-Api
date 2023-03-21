@@ -4,7 +4,6 @@ import './styles/App.css';
 function App() {
 
   const [allBlogs, setAllBlogs] = useState();
-  const [loggedIn, setLoggedIn] = useState(false);
   const [loginLogoutButton, setLoginLogoutButton] = useState();
 
   // Get all blogs
@@ -74,7 +73,7 @@ function App() {
   }
 
   // Removes token from local storage
-  const logout = (e) => {
+  const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expires');
     window.location.reload();
@@ -88,7 +87,6 @@ function App() {
       </header>
 
       <div className='navigation'>
-        {loggedIn}
           {loginLogoutButton}
           <a href='/protected'>
             <button>Protected</button>

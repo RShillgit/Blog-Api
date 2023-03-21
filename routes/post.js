@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const post = require('../models/posts');
 const comment = require('../models/comments');
+const { find } = require('../models/admin');
 
 /* GET posts */
 router.get('/', function(req, res, next) {
@@ -74,5 +75,28 @@ router.put('/:id', function(req, res, next) {
 router.delete('/:id', function(req, res, next) {
     res.json(`Received a DELETE HTTP method ${req.params.id}`);
 });
+
+/* DELETE specific comment */
+router.delete('/:postId/comments/:commentId', (req, res, next) => {
+
+    const commentId = req.params.commentId;
+
+    // Find and remove comment from post's comments array
+    post.findOne({ _id: req.params.postId })
+    .then(post => {
+        
+        const filteredArray = post.comments.filter(comment => comment._id != commentId)
+
+        post.comments = filteredArray;
+        post.save();
+
+    })
+    .then(
+        // Delete comment from the comments DB
+        comment.deleteOne({ _id: req.params.commentId })
+        .catch(err => console.log(err))
+    )
+    next();
+})
 
 module.exports = router;

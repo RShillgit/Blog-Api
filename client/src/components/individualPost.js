@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom";
 
 const IndividualPost = () => {
@@ -7,9 +7,16 @@ const IndividualPost = () => {
     const [blogInfo, setBlogInfo] = useState();
     const [commenterName, setCommenterName] = useState("");
     const [commenterComment, setCommenterComment] = useState("");
+    const deleteCommentButton = useRef();
 
     // Get the selected blog on render 
     useEffect(() => {
+
+        // If the user is logged in, render delete post and comment buttons
+        const token = localStorage.getItem("token");
+        if (token) {
+            deleteCommentButton.current = <button onClick={deleteComment}>Delete</button>
+        }
 
         fetch(`http://localhost:8000/posts/${id}`)
         .then((res) => res.json())
@@ -22,7 +29,8 @@ const IndividualPost = () => {
                     <div className="individualBlog-allComments"> 
                         {data.comments.map(comment => {
                             return (
-                                <div className="individualBlog-individualComment" key={comment._id}> 
+                                <div className="individualBlog-individualComment" key={comment._id} dataid={comment._id}> 
+                                    {deleteCommentButton.current}
                                     <p>{comment.name}</p>
                                     <p>{comment.text}</p>
                                     <p>{formatDate(comment.timestamp)}</p>
@@ -91,6 +99,19 @@ const IndividualPost = () => {
         })
         .then((res) => res.json())
         .then(window.location.reload());
+    }
+
+    // Delete Comment
+    const deleteComment = (e) => {
+        const commentId = e.target.parentElement.getAttribute('dataid');
+        console.log(commentId)
+
+        fetch(`http://localhost:8000/posts/${id}/comments/${commentId}`, {
+            method: 'DELETE',
+            headers: { "Content-Type": "application/json" },
+        })
+        .then(window.location.reload())
+        
     }
 
     return (
