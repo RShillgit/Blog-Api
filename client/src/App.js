@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import './styles/App.css';
 import editImg from './images/edit.png';
 import deleteImg from './images/delete.png';
+import commentImg from './images/comment.png';
 
 function App(props) {
 
@@ -41,7 +42,7 @@ function App(props) {
                         <div className='individualBlog-date'>
                           <p>{formatDate(blog.timestamp)}</p>
                         </div>
-                        <p>{blog.comments.length} Comments</p>                  
+                        <p className="individualBlog-commentQuantity"><img src={commentImg} alt='Comments: '></img>{blog.comments.length}</p>                  
                     </a>
                 </div>
             )
