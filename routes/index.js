@@ -95,9 +95,4 @@ router.post('/login', function (req, res, next) {
     })
 });
 
-/* GET test page */
-router.get('/test', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-  res.json('You are authorized');
-})
-
 module.exports = router;

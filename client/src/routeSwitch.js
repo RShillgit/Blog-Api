@@ -3,7 +3,6 @@ import App from "./App";
 import IndividualPost from "./components/individualPost";
 import Login from "./components/login";
 import Post from "./components/post";
-import Protected from "./components/protected";
 import UpdatePost from "./components/updatePost";
 
 
@@ -16,7 +15,6 @@ const RouteSwitch = () => {
         <Route path="/posts" element={<Post />} />
         <Route path="/posts/:id" element={<IndividualPost />} />
         <Route path="/posts/:id/update" element={<UpdatePost />} />
-        <Route path="/protected" element={<Protected />} />
       </Routes>
     </BrowserRouter>
   );

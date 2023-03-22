@@ -125,9 +125,6 @@ function App() {
 
       <div className='navigation'>
           {createBlogButton}
-          <a href='/protected'>
-            <button>Protected</button>
-          </a>
           {loginLogoutButton}
       </div>
 
