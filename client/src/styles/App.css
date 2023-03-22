@@ -153,6 +153,22 @@ header h1, header p {
   color: red;
   font-weight: 600;
 }
+.login-page .error-message p {
+  margin-bottom: 0;
+}
+.login-page .admin-demo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-page .admin-demo-text {
+  width: 80%;
+  text-align: center;
+}
+.login-page .admin-demo #adminDemoVideo {
+  width: 80%;
+}
 
 /* POSTS PAGE */
 .posts-allBlogs {

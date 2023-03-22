@@ -73,7 +73,7 @@ router.post('/login', function (req, res, next) {
 
       // If no user send error
       if (!user) {
-        return res.status(401).json({success: false, error_message: "could not find user"});
+        return res.status(401).json({success: false, error_message: "Could not find user"});
       }
 
       // Check if password is valid

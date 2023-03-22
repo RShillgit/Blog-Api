@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import blogApiDemo from '../images/blog-api-demo.mp4';
 
 function Login(props) {
 
@@ -84,7 +85,7 @@ function Login(props) {
 
             <div className="non-navbar-container">
                 <header>
-                    <h1>Login Page</h1>
+                    <h1>Admin Login</h1>
                 </header>
                 
                 <div className="login-form">
@@ -101,9 +102,19 @@ function Login(props) {
                         <a href="/"><button>Cancel</button></a>
                         <button form="admin-login-form">Submit</button>
                     </div>
+                    {message}
+                    <div className="admin-demo">
+                        <p className="admin-demo-text">
+                            Only I, the creator, knows this login information. The admin can delete comments,
+                            and create, edit, and delete blog posts. Watch the video below if you are interested.
+                        </p>
+                        <video autoPlay loop muted id='adminDemoVideo'>
+                            <source src={blogApiDemo} type="video/mp4" />
+                            <source src="movie.ogg" type="video/ogg" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                 </div>
-
-                {message}
             </div>
             {props.footer}
         </div>
