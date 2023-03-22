@@ -20,7 +20,7 @@ const Post = () => {
         // If there is a token, add it to the auth header of the get request
         if (token.current) {
             
-            fetch("http://localhost:8000/test", {
+            fetch("http://localhost:8000/posts", {
                 method: 'GET',
                 headers: {Authorization: token.current}
             })

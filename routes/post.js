@@ -3,18 +3,6 @@ var router = express.Router();
 const passport = require('passport');
 const post = require('../models/posts');
 const comment = require('../models/comments');
-const { find } = require('../models/admin');
-
-
-/* GET posts */
-/*
-router.get('/', function(req, res, next) {
-    post.find({}).lean()
-    .then((blogs) => {        
-        res.json(blogs);
-    })
-});
-*/
 
 /* GET that allows admins to access create blog page */
 router.get('/', passport.authenticate('jwt', {session: false}), (req, res, next) => {

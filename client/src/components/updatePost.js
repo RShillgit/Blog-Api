@@ -25,6 +25,14 @@ const UpdatePost = () => {
                 setTitle(data.title);
                 setContent(data.text);
             })
+
+            // Display page content
+            const updatePostPage = document.querySelector('.updatePost-page');
+            updatePostPage.style.display = 'block';
+        }
+
+        else {
+            navigate('/');
         }
 
     }, [])
@@ -57,7 +65,7 @@ const UpdatePost = () => {
     }
 
     return (
-        <div>
+        <div className="updatePost-page">
             <header><h1>Update Post</h1></header>
             <form onSubmit={updateFormSubmit} id="update-post-form">
                 <label>

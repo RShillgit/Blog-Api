@@ -116,3 +116,8 @@ header {
   justify-content: center;
   margin: 1rem;
 }
+
+/* UPDATE POST PAGE */
+.updatePost-page {
+  display: none;
+}
