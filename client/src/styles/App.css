@@ -64,7 +64,8 @@ label {
 /* NON NAVBAR CONTAINER */
 .non-navbar-container {
   margin-top: 133px; /* 117px is the height of the navbar + 16px/1rem margin */
-  margin-bottom: 100px;
+  margin-bottom: 2rem;
+  min-height: calc(100vh - 249px); /* 100vh - (133px top margin + 84px footer + 32px/2rem margin bottom*/
 }
 
 /* HEADER */
@@ -198,7 +199,7 @@ header {
 
 /* FOOTER */
 .footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
   display: flex;
