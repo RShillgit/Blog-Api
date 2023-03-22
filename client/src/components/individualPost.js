@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom";
+import deleteImg from '../images/delete.png';
 
 const IndividualPost = (props) => {
 
@@ -15,7 +16,9 @@ const IndividualPost = (props) => {
         // If the user is logged in, render delete post and comment buttons
         const token = localStorage.getItem("token");
         if (token) {
-            deleteCommentButton.current = <button onClick={deleteComment}>Delete</button>
+            deleteCommentButton.current = <div className="deleteCommentBtn-div">
+                <img src={deleteImg} alt='Delete' onClick={deleteComment}></img>
+            </div>
         }
 
         fetch(`http://localhost:8000/posts/${id}`)
@@ -23,17 +26,26 @@ const IndividualPost = (props) => {
         .then((data) => {
             setBlogInfo(
                 <div className="individualBlog">
-                    <p>{data.title}</p>
-                    <p>{data.text}</p>
-                    <p>{formatDate(data.timestamp)}</p>
+                    <div className="individualBlog-info">
+                        <div className="individualBlog-title">
+                            <p>{data.title}</p>
+                        </div>
+                        <p>{data.text}</p>
+                        <div className="individualBlog-date">
+                            <p>{formatDate(data.timestamp)}</p>
+                        </div>
+                    </div>
                     <div className="individualBlog-allComments"> 
+                        <h4 id="commentsTitle">Comments</h4>
                         {data.comments.map(comment => {
                             return (
                                 <div className="individualBlog-individualComment" key={comment._id} dataid={comment._id}> 
                                     {deleteCommentButton.current}
-                                    <p>{comment.name}</p>
                                     <p>{comment.text}</p>
-                                    <p>{formatDate(comment.timestamp)}</p>
+                                    <p>- {comment.name}</p>
+                                    <div className="individualBlog-date">
+                                        <p>{formatDate(comment.timestamp)}</p>
+                                    </div>
                                 </div>
                             )
                         })}
@@ -103,7 +115,7 @@ const IndividualPost = (props) => {
 
     // Delete Comment
     const deleteComment = (e) => {
-        const commentId = e.target.parentElement.getAttribute('dataid');
+        const commentId = e.target.parentElement.parentElement.getAttribute('dataid');
 
         fetch(`http://localhost:8000/posts/${id}/comments/${commentId}`, {
             method: 'DELETE',
@@ -119,9 +131,6 @@ const IndividualPost = (props) => {
             {props.navbar}
 
             <div className="non-navbar-container">
-                <header>
-                    <h1>Individual Post</h1>
-                </header>
                 {blogInfo}
                 <form className="post-comment-form" onSubmit={formSubmit}>
                     <h4>Leave A Comment</h4>
@@ -131,7 +140,7 @@ const IndividualPost = (props) => {
                     </label>
                     <label>
                         Comment 
-                        <textarea onChange={commenterCommentChange} name="comment"/>
+                        <textarea onChange={commenterCommentChange} rows='5' cols='30' name="comment"/>
                     </label>
                     <button>Post Comment</button>
                 </form>

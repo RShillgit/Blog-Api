@@ -78,7 +78,7 @@ const Post = (props) => {
                         Title: <input type="text" name="title" onChange={blogTitleChange} required={true}></input>
                     </label>
                     <label>
-                        Content: <textarea type="text" name="content" onChange={blogContentChange} required={true} />
+                        Content: <textarea type="text" name="content" rows='5' cols='50' onChange={blogContentChange} required={true} />
                     </label>
                 </form>
                 <div className="form-buttons">

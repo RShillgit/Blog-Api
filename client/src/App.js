@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import './styles/App.css';
+import editImg from './images/edit.png';
+import deleteImg from './images/delete.png';
 
 function App(props) {
 
@@ -17,8 +19,8 @@ function App(props) {
     // If there is set admin functionality
     if (token) {
       adminButtons.current = <div className="admin-buttons">
-        <button onClick={editPost}>Edit</button>
-        <button onClick={deletePost}>Delte</button>
+        <img src={editImg} alt='Edit' onClick={editPost}></img>
+        <img src={deleteImg} alt='Delete' onClick={deletePost}></img>
       </div>
     }
 
@@ -32,10 +34,14 @@ function App(props) {
                 <div className="home-individualBlog" key={blog._id} blogid={blog._id}>
                   {adminButtons.current}
                     <a href={href}>
-                        <p>{blog.title}</p>
+                        <div className='individualBlog-title'>
+                          <p>{blog.title}</p>
+                        </div>
                         <p id="individualBlog-text">{blog.text}</p>
-                        <p>{formatDate(blog.timestamp)}</p>
-                        <p>{blog.comments.length} Comments</p>
+                        <div className='individualBlog-date'>
+                          <p>{formatDate(blog.timestamp)}</p>
+                        </div>
+                        <p>{blog.comments.length} Comments</p>                  
                     </a>
                 </div>
             )
@@ -98,8 +104,10 @@ function App(props) {
       {props.navbar}
 
       <div className="non-navbar-container">
-        <header className="App-header">
-          <h1>Blog Home Page</h1>
+
+        <header>
+          <h1>Blog Your Life Away</h1>
+          <p>A blogging website used to read and write loads of indecipherable garbage</p>
         </header>
 
         <div className="home-content">

@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import blogImg from '../images/blog.png';
+import homeImg from '../images/home.png';
 
 const Navigation = () => {
 
@@ -25,7 +26,7 @@ const Navigation = () => {
         if (route.pathname !== '/') {
             setHomeButton(
                 <a href='/'>
-                    <button>Home</button>
+                    <img src={homeImg} alt='Home'></img>
                 </a>
             )
         }

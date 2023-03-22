@@ -69,7 +69,7 @@ const UpdatePost = (props) => {
             {props.navbar}
 
             <div className="non-navbar-container">
-                <header><h1>Update Post</h1></header>
+                <header><h1>Edit Post</h1></header>
                 <form onSubmit={updateFormSubmit} id="update-post-form">
                     <label>
                         Title:
@@ -77,7 +77,7 @@ const UpdatePost = (props) => {
                     </label>
                     <label>
                         Content:
-                        <textarea type='text' name="content" value={content} onChange={contentChange} required={true} />
+                        <textarea type='text' name="content" value={content} onChange={contentChange} rows='5' cols='50' required={true} />
                     </label>
                 </form>
                 <div className="form-buttons">
