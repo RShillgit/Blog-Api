@@ -64,6 +64,7 @@ label {
 /* NON NAVBAR CONTAINER */
 .non-navbar-container {
   margin-top: 133px; /* 117px is the height of the navbar + 16px/1rem margin */
+  margin-bottom: 100px;
 }
 
 /* HEADER */
@@ -82,7 +83,7 @@ header {
 
 /* BLOG HOME PAGE */
 .home-content {
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
@@ -193,4 +194,45 @@ header {
 /* UPDATE POST PAGE */
 .updatePost-page {
   display: none;
+}
+
+/* FOOTER */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 0 1.5rem 0;
+  box-shadow: 0px 0px 10px #050709;
+  background-image: radial-gradient(circle, #ffffff, #fafafa, #f5f4f5, #f1eff0, #eceaea, #eceaea, #eceaea, #eceaea, #f1eff0, #f5f4f5, #fafafa, #ffffff);
+}
+.footer .credits-div {
+  display: flex;
+  width: 48%;
+  justify-content: center;
+  font-style: italic;
+}
+.footer .credits-div a {
+  text-decoration: none;
+  color: black;
+}
+.footer .github-div {
+  display: flex;
+  width: 52%;
+  justify-content: flex-start;
+}
+.footer .github-div #githubImg:hover {
+  animation: rotate 0.4s linear;
+}
+@keyframes rotate{
+  0%{
+      transform: rotate(0deg);
+  }
+  50%{
+      transform: rotate(180deg);
+  }
+  100%{
+      transform: rotate(360deg);
+  }
 }

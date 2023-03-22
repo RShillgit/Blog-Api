@@ -145,6 +145,7 @@ const IndividualPost = (props) => {
                     <button>Post Comment</button>
                 </form>
             </div>
+            {props.footer}
         </div>
     )
 }

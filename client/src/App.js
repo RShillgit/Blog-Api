@@ -106,7 +106,7 @@ function App(props) {
       <div className="non-navbar-container">
 
         <header>
-          <h1>Blog Your Life Away</h1>
+          <h1>Blog My Life Away</h1>
           <p>A blogging website used to read and write loads of indecipherable garbage</p>
         </header>
 
@@ -114,6 +114,7 @@ function App(props) {
           {allBlogs}
         </div>
       </div>
+      {props.footer}
     </div>
   );
 }

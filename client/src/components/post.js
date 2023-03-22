@@ -85,7 +85,8 @@ const Post = (props) => {
                     <a href="/"><button>Cancel</button></a>
                     <button form="create-blog-form">Create</button>
                 </div>
-           </div>        
+           </div>   
+           {props.footer}     
         </div>
     )
 }

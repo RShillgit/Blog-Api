@@ -15,6 +15,7 @@ const PageNotFound = (props) => {
                     <h1>Route {route.pathname} Not Found</h1>
                 </header>
             </div>
+            {props.footer}
         </div>
     )
 }

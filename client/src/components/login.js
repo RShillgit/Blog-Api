@@ -105,6 +105,7 @@ function Login(props) {
 
                 {message}
             </div>
+            {props.footer}
         </div>
     )
 }

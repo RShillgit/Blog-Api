@@ -87,6 +87,7 @@ const UpdatePost = (props) => {
                     <button form="update-post-form">Submit</button>
                 </div>
             </div>
+            {props.footer}
         </div>
     )
 }
