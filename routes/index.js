@@ -33,7 +33,6 @@ router.delete('/', function(req, res, next) {
   res.send("Received a DELETE HTTP method");
 });
 
-
 /* GET Register */ // TODO: TEMPORARY
 router.get('/register', (req, res, next) => {
   res.render('register');
@@ -59,7 +58,6 @@ router.post('/register', (req, res, next) => {
     })
     .catch(err => next(err));
 })
-
 
 /* GET login page */
 router.get('/login', function(req, res, next) {

@@ -1,16 +1,49 @@
+body {
+  margin: 0;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  background-color: lightgray;
+  width: 100%;
+  width: -moz-available;          /* WebKit-based browsers will ignore this. */
+  width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+  width: fill-available
+}
+.navbar .navbar-buttons {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.navbar .navbar-buttons .navbar-buttons-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.navbar #blogBtn {
+  border: none;
+  background: none;
+}
+.navbar #blogBtnImg {
+  width:80px;
+}
+.navbar #blogBtnImg:hover {
+  cursor: pointer;
+}
+
+/* NON NAVBAR CONTAINER */
+.non-navbar-container {
+  margin-top: 117px;
+}
+
 /* HEADER */
 header {
   display: flex;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-}
-
-/* NAVIGATION */
-.navigation {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
 }
 
 /* BLOG HOME PAGE */

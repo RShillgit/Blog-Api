@@ -78,7 +78,6 @@ router.delete('/:id', function(req, res, next) {
     // Delete any comments associated with this post
     comment.deleteMany({ parent_post: req.params.id })
         .catch(err => console.log(err));
-    //res.json(`Received a DELETE HTTP method ${req.params.id}`);
 });
 
 /* DELETE specific comment */

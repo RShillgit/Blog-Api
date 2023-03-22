@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Post = () => {
+const Post = (props) => {
 
     const navigate = useNavigate();
     const [blogTitle, setBlogTitle] = useState("");
@@ -67,22 +67,25 @@ const Post = () => {
 
     return (
         <div className="createBlog-page">
+
+            {props.navbar}
            
+           <div className="non-navbar-container">
             <header><h1>Create Blog Post</h1></header>
-            
-            <form onSubmit={formSubmit} id='create-blog-form'>
-                <label>
-                    Title: <input type="text" name="title" onChange={blogTitleChange} required={true}></input>
-                </label>
-                <label>
-                    Content: <input type="text" name="content" onChange={blogContentChange} required={true}></input>
-                </label>
-            </form>
-            <div className="form-buttons">
-                <a href="/"><button>Cancel</button></a>
-                <button form="create-blog-form">Create</button>
-            </div>
-                    
+                
+                <form onSubmit={formSubmit} id='create-blog-form'>
+                    <label>
+                        Title: <input type="text" name="title" onChange={blogTitleChange} required={true}></input>
+                    </label>
+                    <label>
+                        Content: <textarea type="text" name="content" onChange={blogContentChange} required={true} />
+                    </label>
+                </form>
+                <div className="form-buttons">
+                    <a href="/"><button>Cancel</button></a>
+                    <button form="create-blog-form">Create</button>
+                </div>
+           </div>        
         </div>
     )
 }

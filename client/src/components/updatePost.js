@@ -31,10 +31,10 @@ const UpdatePost = () => {
             updatePostPage.style.display = 'block';
         }
 
+        // If not, navigate back to home
         else {
             navigate('/');
         }
-
     }, [])
 
     // Title input change
@@ -61,7 +61,6 @@ const UpdatePost = () => {
         })
         // Then navigate back to home
         .then(navigate('/'));
-
     }
 
     return (

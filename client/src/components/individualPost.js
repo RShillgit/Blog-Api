@@ -116,7 +116,7 @@ const IndividualPost = () => {
     return (
         <div>
             <header><h1>Individual Post</h1></header>
-            <div className="navigation">
+            <div className="nav">
                 <a href="/">
                     <button>Home</button>
                 </a>

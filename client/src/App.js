@@ -2,11 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import './styles/App.css';
 
-function App() {
+function App(props) {
 
   const navigate = useNavigate();
   const [allBlogs, setAllBlogs] = useState();
-  const [loginLogoutButton, setLoginLogoutButton] = useState();
   const [createBlogButton, setCreateBlogButton] = useState();
   const adminButtons = useRef();
 
@@ -18,9 +17,6 @@ function App() {
 
     // If there is set admin functionality
     if (token) {
-      setLoginLogoutButton(
-        <button onClick={logout}>Logout</button>
-      )
       setCreateBlogButton(
         <a href="/posts">
           <button>Create Blog</button>
@@ -31,11 +27,6 @@ function App() {
         <button onClick={deletePost}>Delte</button>
       </div>
     }
-    else setLoginLogoutButton(
-      <a href='/login'>
-        <button>Admin Login</button>
-      </a>
-    );
 
     fetch("http://localhost:8000")
       .then((res) => res.json())
@@ -88,24 +79,15 @@ function App() {
     return formattedDate;
   }
 
-  // Removes token from local storage
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expires');
-    window.location.reload();
-  }
-
   const deletePost = (e) => {
 
-    const postId = e.target.parentElement.getAttribute('blogid');
-    console.log(postId);
+    const postId = e.target.parentElement.parentElement.getAttribute('blogid');
 
     fetch(`http://localhost:8000/posts/${postId}`, {
       method: 'DELETE',
       headers: { "Content-Type": "application/json" },
     })
     .then(window.location.reload())
-
   }
 
   const editPost = (e) => {
@@ -119,19 +101,21 @@ function App() {
   return (
     <div className="App">
 
-      <header className="App-header">
-        <h1>Blog Home Page</h1>
-      </header>
+      {props.navbar}
 
-      <div className='navigation'>
-          {createBlogButton}
-          {loginLogoutButton}
+      <div className="non-navbar-container">
+        <header className="App-header">
+          <h1>Blog Home Page</h1>
+        </header>
+
+        <div className='nav'>
+            {createBlogButton}
+        </div>
+
+        <div className="home-content">
+          {allBlogs}
+        </div>
       </div>
-
-      <div className="home-content">
-        {allBlogs}
-      </div>
-
     </div>
   );
 }
