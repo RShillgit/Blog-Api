@@ -5,15 +5,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require("mongoose");
-var favicon = require('serve-favicon');
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var postRouter = require('./routes/post');
 
 var app = express();
-/* Favicon */
-// app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
 
 // Set up mongoose connection
 mongoose.set('strictQuery', false); 
