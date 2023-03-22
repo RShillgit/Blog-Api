@@ -1,5 +1,11 @@
+html {
+  font-size: larger;
+}
 body {
   margin: 0;
+}
+button {
+  font-size: medium;
 }
 button:hover {
   cursor: pointer;;
@@ -63,7 +69,7 @@ label {
 
 /* NON NAVBAR CONTAINER */
 .non-navbar-container {
-  margin-top: 133px; /* 117px is the height of the navbar + 16px/1rem margin */
+  margin-top: 140px; /* 124px is the height of the navbar + 16px/1rem margin */
   margin-bottom: 2rem;
   min-height: calc(100vh - 249px); /* 100vh - (133px top margin + 84px footer + 32px/2rem margin bottom*/
 }
@@ -76,7 +82,7 @@ header {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  margin-top: 1rem;
+
   margin-bottom: 1rem;
   background-image: radial-gradient(circle, #ffffff, #fafafa, #f5f4f5, #f1eff0, #eceaea, #eceaea, #eceaea, #eceaea, #f1eff0, #f5f4f5, #fafafa, #ffffff);
   box-shadow: 0px 0px 10px #050709;
@@ -86,7 +92,7 @@ header {
 .home-content {
   padding: 1rem 1rem 0 1rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-gap: 1rem;
 }
 .home-individualBlog {
@@ -144,6 +150,10 @@ header {
 }
 
 /* INDIVIDUAL POSTS PAGE */
+.individualPost-page .navbar .navbar-buttons {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 .individualBlog {
   padding: 2rem;
   margin: 1rem;
