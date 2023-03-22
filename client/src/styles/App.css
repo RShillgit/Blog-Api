@@ -1,10 +1,18 @@
+@font-face {
+  font-family: Noticia;
+  src: url('../fonts/Noticia_Text/NoticiaText-Regular.ttf');
+}
+
+html, button, input, textarea, a {
+  font-family: Noticia;
+}
 html {
   font-size: larger;
 }
 body {
   margin: 0;
 }
-button {
+button, input, textarea {
   font-size: medium;
 }
 button:hover {
@@ -85,7 +93,6 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   text-align: center;
   margin-bottom: 1rem;
   padding: 2rem 1rem 2rem 1rem;
@@ -301,12 +308,15 @@ header h1, header p {
     align-items: center;
   }
 }
-@media (max-width: 150px) {
+@media (max-width: 175px) {
   .navbar .navbar-buttons {
     flex-direction: column;
     padding: 0.5rem 0 0.5rem 0;
   }
   html {
     overflow-wrap: anywhere;
+  }
+  button {
+    font-size: small;
   }
 }
