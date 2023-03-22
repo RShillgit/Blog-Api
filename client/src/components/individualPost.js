@@ -119,12 +119,9 @@ const IndividualPost = (props) => {
             {props.navbar}
 
             <div className="non-navbar-container">
-                <header><h1>Individual Post</h1></header>
-                <div className="nav">
-                    <a href="/">
-                        <button>Home</button>
-                    </a>
-                </div>
+                <header>
+                    <h1>Individual Post</h1>
+                </header>
                 {blogInfo}
                 <form className="post-comment-form" onSubmit={formSubmit}>
                     <h4>Leave A Comment</h4>

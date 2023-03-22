@@ -1,9 +1,14 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import blogImg from '../images/blog.png';
 
 const Navigation = () => {
 
+    const route = useLocation();
+
     const token = useRef();
+    const [homeButton, setHomeButton] = useState();
+    const [createBlogButton, setCreateBlogButton] = useState();
     const [loginLogoutButton, setLoginLogoutButton] = useState();
 
 
@@ -16,22 +21,40 @@ const Navigation = () => {
     // On mount
     useEffect(() => {
 
-        // TODO: If route != '/' add a home button
-        // TODO: If route != '/posts' and admin is logged in, add a create blog button
+        // If route is NOT '/' add a home button
+        if (route.pathname !== '/') {
+            setHomeButton(
+                <a href='/'>
+                    <button>Home</button>
+                </a>
+            )
+        }
 
         // If the admin is logged in, set admin nav buttons
         if (token.current) {
             setLoginLogoutButton(
                 <button onClick={logout}>Logout</button>
             )
+
+            // If route is NOT '/posts' add a create blog button
+            if (route.pathname !== '/posts') {
+                setCreateBlogButton(
+                    <a href='/posts'>
+                        <button>Create Blog</button>
+                    </a>
+                )
+            }
+
         }
 
         // Else, set normal nav buttons
-        else setLoginLogoutButton(
-            <a href='/login'>
-              <button>Admin Login</button>
-            </a>
-        );
+        else if (route.pathname !== '/login') {
+            setLoginLogoutButton(
+                <a href='/login'>
+                  <button>Admin Login</button>
+                </a>
+            );
+        } 
     }, [])
 
     // Scrolls to the top of the page
@@ -57,6 +80,8 @@ const Navigation = () => {
                 </button>
 
                 <div className='navbar-buttons-right'>
+                    {homeButton}
+                    {createBlogButton}
                     {loginLogoutButton}
                 </div>
             </div>

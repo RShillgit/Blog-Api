@@ -1,22 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
 function Login(props) {
 
+    const token = useRef();
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
 
+    // Before mount check for token
+    useLayoutEffect(() => {
+        const idToken = localStorage.getItem("token");
+        token.current = idToken;
+    }, [])
+
+    useEffect(() => {
+
+        // If there is a token, redirect to home page
+        if (token.current) {
+            navigate('/');
+        }
+
+        // Else render login page
+        else {
+            const loginPage = document.querySelector('.login-page');
+            loginPage.style.display = 'block';
+        }
+
+    }, [])
+
+    // Username input change
     const usernameChange = (e) => {
         setUsername(e.target.value);
     }
 
+    // Password input change
     const passwordChange = (e) => {
         setPassword(e.target.value);
     }
 
+    // Login form submit
     const handleSubmit = (e) => {
         e.preventDefault();
         const login_information = {username, password};

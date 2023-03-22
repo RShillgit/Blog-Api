@@ -6,7 +6,6 @@ function App(props) {
 
   const navigate = useNavigate();
   const [allBlogs, setAllBlogs] = useState();
-  const [createBlogButton, setCreateBlogButton] = useState();
   const adminButtons = useRef();
 
   // Get all blogs
@@ -17,11 +16,6 @@ function App(props) {
 
     // If there is set admin functionality
     if (token) {
-      setCreateBlogButton(
-        <a href="/posts">
-          <button>Create Blog</button>
-        </a>
-      )
       adminButtons.current = <div className="admin-buttons">
         <button onClick={editPost}>Edit</button>
         <button onClick={deletePost}>Delte</button>
@@ -107,10 +101,6 @@ function App(props) {
         <header className="App-header">
           <h1>Blog Home Page</h1>
         </header>
-
-        <div className='nav'>
-            {createBlogButton}
-        </div>
 
         <div className="home-content">
           {allBlogs}

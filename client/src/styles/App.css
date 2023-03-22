@@ -66,6 +66,9 @@ header {
 }
 
 /* LOGIN PAGE */
+.login-page {
+  display: none;
+}
 .login-form {
   flex-direction: column;
   display: flex;
