@@ -2,6 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const validatePassword = require('../utils/passwordUtils').validatePassword;
 const Admin = require('../models/admin'); 
+require('dotenv').config();
 
 const passportJWT = require("passport-jwt");
 const JWTStrategy = passportJWT.Strategy;
@@ -40,7 +41,7 @@ passport.use(strategy);
 */
 const jwtOptions = {
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey: 'secret', // TODO: Change to .env Secret
+    secretOrKey: process.env.secret_string, // TODO: Change to .env Secret
 };
 const jwtStrategy = new JWTStrategy(jwtOptions, (payload, done) => {
     Admin.findOne({_id: payload.sub})

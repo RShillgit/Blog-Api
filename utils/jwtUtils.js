@@ -1,3 +1,4 @@
+require('dotenv').config();
 const jsonwebtoken = require('jsonwebtoken');
 
 function issueJWT(user) {
@@ -10,7 +11,7 @@ function issueJWT(user) {
         iat: Date.now()
     };
 
-    const signedToken = jsonwebtoken.sign(payload, 'secret', {expiresIn: expiresIn}) //TODO: Change secret to .env secret
+    const signedToken = jsonwebtoken.sign(payload, process.env.secret_string, {expiresIn: expiresIn}) //TODO: Change secret to .env secret
     
     return {
         token: "Bearer " + signedToken,

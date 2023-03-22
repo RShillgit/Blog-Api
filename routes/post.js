@@ -12,8 +12,6 @@ router.get('/', passport.authenticate('jwt', {session: false}), (req, res, next)
 /* POST that creates a post. */
 router.post('/', function(req, res, next) {
 
-    console.log(req.body)
-
     const newPost = new post({
         title: req.body.blogTitle,
         text: req.body.blogContent,
