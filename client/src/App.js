@@ -53,9 +53,6 @@ function App(props) {
   // Formats timestamp into MM/DD/YYYY
   const formatDate = (timestamp) => {
 
-    // TODO: Maybe send this function as props so there is less code reuse
-    // TODO: Maybe add the hours and minutes to get the specific time of the comment
-
     const blogDate = new Date(timestamp);
 
     // Day

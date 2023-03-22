@@ -33,11 +33,11 @@ router.delete('/', function(req, res, next) {
   res.send("Received a DELETE HTTP method");
 });
 
-/* GET Register */ // TODO: TEMPORARY
+/* GET Register */ 
 router.get('/register', (req, res, next) => {
   res.render('register');
 })
-/* POST Register */ // TODO: TEMPORARY
+/* POST Register */ 
 router.post('/register', (req, res, next) => {
   const saltHash = passwordUtils.genPassword(req.body.password);
 
