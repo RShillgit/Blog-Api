@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-const UpdatePost = () => {
+const UpdatePost = (props) => {
 
     const navigate = useNavigate();
     const token = useRef();
@@ -65,22 +65,27 @@ const UpdatePost = () => {
 
     return (
         <div className="updatePost-page">
-            <header><h1>Update Post</h1></header>
-            <form onSubmit={updateFormSubmit} id="update-post-form">
-                <label>
-                    Title:
-                    <input type='text' name="title" value={title} onChange={titleChange} required={true}></input>
-                </label>
-                <label>
-                    Content:
-                    <textarea type='text' name="content" value={content} onChange={contentChange} required={true} />
-                </label>
-            </form>
-            <div className="form-buttons">
-                <a href="/">
-                    <button>Cancel</button>
-                </a>
-                <button form="update-post-form">Submit</button>
+            
+            {props.navbar}
+
+            <div className="non-navbar-container">
+                <header><h1>Update Post</h1></header>
+                <form onSubmit={updateFormSubmit} id="update-post-form">
+                    <label>
+                        Title:
+                        <input type='text' name="title" value={title} onChange={titleChange} required={true}></input>
+                    </label>
+                    <label>
+                        Content:
+                        <textarea type='text' name="content" value={content} onChange={contentChange} required={true} />
+                    </label>
+                </form>
+                <div className="form-buttons">
+                    <a href="/">
+                        <button>Cancel</button>
+                    </a>
+                    <button form="update-post-form">Submit</button>
+                </div>
             </div>
         </div>
     )

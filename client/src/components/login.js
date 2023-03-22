@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login(props) {
 
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
@@ -53,30 +53,33 @@ function Login() {
     }
 
     return (
-        <div className="Login">
+        <div className="login-page">
 
-            <header>
-                <h1>Login Page</h1>
-            </header>
-            
-            <div className="login-form">
-                <form onSubmit={handleSubmit} id='admin-login-form'>
-                    <label>
-                        Username <input type='text' name="username" onChange={usernameChange}></input>
-                    </label>
-                    <label>
-                        Password <input type='password' name="password" onChange={passwordChange}></input>
-                    </label>
+            {props.navbar}
 
-                </form>
-                <div className="form-buttons">
-                    <a href="/"><button>Cancel</button></a>
-                    <button form="admin-login-form">Submit</button>
+            <div className="non-navbar-container">
+                <header>
+                    <h1>Login Page</h1>
+                </header>
+                
+                <div className="login-form">
+                    <form onSubmit={handleSubmit} id='admin-login-form'>
+                        <label>
+                            Username <input type='text' name="username" onChange={usernameChange} required={true}></input>
+                        </label>
+                        <label>
+                            Password <input type='password' name="password" onChange={passwordChange} required={true}></input>
+                        </label>
+
+                    </form>
+                    <div className="form-buttons">
+                        <a href="/"><button>Cancel</button></a>
+                        <button form="admin-login-form">Submit</button>
+                    </div>
                 </div>
+
+                {message}
             </div>
-
-            {message}
-
         </div>
     )
 }

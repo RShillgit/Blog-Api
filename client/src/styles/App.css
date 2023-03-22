@@ -83,12 +83,12 @@ header {
   padding: 1rem;
   gap: 1rem;
 }
-.Login .error-message {
+.login-page .error-message {
   display: flex;
   justify-content: center;
   color: red;
 }
-.Login .error-message p {
+.login-page .error-message p {
   margin: 0;
 }
 

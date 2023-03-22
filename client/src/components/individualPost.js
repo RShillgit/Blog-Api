@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom";
 
-const IndividualPost = () => {
+const IndividualPost = (props) => {
 
     const {id} = useParams();
     const [blogInfo, setBlogInfo] = useState();
@@ -114,26 +114,31 @@ const IndividualPost = () => {
     }
 
     return (
-        <div>
-            <header><h1>Individual Post</h1></header>
-            <div className="nav">
-                <a href="/">
-                    <button>Home</button>
-                </a>
+        <div className="individualPost-page">
+
+            {props.navbar}
+
+            <div className="non-navbar-container">
+                <header><h1>Individual Post</h1></header>
+                <div className="nav">
+                    <a href="/">
+                        <button>Home</button>
+                    </a>
+                </div>
+                {blogInfo}
+                <form className="post-comment-form" onSubmit={formSubmit}>
+                    <h4>Leave A Comment</h4>
+                    <label>
+                        Name 
+                        <input onChange={commenterNameChange} type='text' name="name"/>
+                    </label>
+                    <label>
+                        Comment 
+                        <textarea onChange={commenterCommentChange} name="comment"/>
+                    </label>
+                    <button>Post Comment</button>
+                </form>
             </div>
-            {blogInfo}
-            <form className="post-comment-form" onSubmit={formSubmit}>
-                <h4>Leave A Comment</h4>
-                <label>
-                    Name 
-                    <input onChange={commenterNameChange} type='text' name="name"/>
-                </label>
-                <label>
-                    Comment 
-                    <textarea onChange={commenterCommentChange} name="comment"/>
-                </label>
-                <button>Post Comment</button>
-            </form>
         </div>
     )
 }
