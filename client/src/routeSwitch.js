@@ -11,15 +11,17 @@ import UpdatePost from "./components/updatePost";
 
 
 const RouteSwitch = () => {
+  // Server URL that can be switched to 'http://localhost:8080/' when in development or 'https://blog-api-production-2e51.up.railway.app/' in production
+  const serverURL = 'https://blog-api-production-2e51.up.railway.app/';
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App navbar={<Navigation />} footer={<Footer/>}/>} />
-        <Route path="/login" element={<Login navbar={<Navigation />} footer={<Footer/>} />} />
-        <Route path="/posts" element={<Post navbar={<Navigation />} footer={<Footer/>} />} />
-        <Route path="/posts/:id" element={<IndividualPost navbar={<Navigation />} footer={<Footer/>} />} />
-        <Route path="/posts/:id/update" element={<UpdatePost navbar={<Navigation />} footer={<Footer/>} />} />
-        <Route path="*" element={<PageNotFound navbar={<Navigation />} footer={<Footer/>} />}/>
+        <Route path="/" element={<App navbar={<Navigation />} footer={<Footer/>} serverURL={serverURL}/>} />
+        <Route path="/login" element={<Login navbar={<Navigation />} footer={<Footer/>} serverURL={serverURL}/>} />
+        <Route path="/posts" element={<Post navbar={<Navigation />} footer={<Footer/>} serverURL={serverURL}/>} />
+        <Route path="/posts/:id" element={<IndividualPost navbar={<Navigation />} footer={<Footer/>} serverURL={serverURL}/>} />
+        <Route path="/posts/:id/update" element={<UpdatePost navbar={<Navigation />} footer={<Footer/>} serverURL={serverURL}/>} />
+        <Route path="*" element={<PageNotFound navbar={<Navigation />} footer={<Footer/>} serverURL={serverURL}/>}/>
       </Routes>
     </BrowserRouter>
   );

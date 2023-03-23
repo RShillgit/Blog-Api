@@ -25,7 +25,7 @@ function App(props) {
       </div>
     }
 
-    fetch("https://blog-api-production-2e51.up.railway.app/")
+    fetch(`${props.serverURL}`)
       .then((res) => res.json())
       .then((data) => {
         setAllBlogs(
@@ -81,7 +81,7 @@ function App(props) {
 
     const postId = e.target.parentElement.parentElement.getAttribute('blogid');
 
-    fetch(`https://blog-api-production-2e51.up.railway.app/posts/${postId}`, {
+    fetch(`${props.serverURL}posts/${postId}`, {
       method: 'DELETE',
       headers: { "Content-Type": "application/json" },
     })

@@ -19,7 +19,7 @@ const UpdatePost = (props) => {
 
         // If there is a token, get the post information to fill the inputs
         if (token.current) {
-            fetch(`https://blog-api-production-2e51.up.railway.app/posts/${postId.id}`)
+            fetch(`${props.serverURL}posts/${postId.id}`)
             .then((res) => res.json())
             .then((data) => {
                 setTitle(data.title);
@@ -54,13 +54,13 @@ const UpdatePost = (props) => {
         const newBlogInfo = {title, content};
 
         // POST request to create the new blog
-        fetch(`https://blog-api-production-2e51.up.railway.app/posts/${postId.id}`, {
+        fetch(`${props.serverURL}posts/${postId.id}`, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newBlogInfo)
         })
-        // Then navigate back to home
-        .then(navigate('/'));
+        // Then navigate back to home and refresh
+        .then(navigate('/'), navigate(0))
     }
 
     return (

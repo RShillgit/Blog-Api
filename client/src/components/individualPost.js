@@ -21,7 +21,7 @@ const IndividualPost = (props) => {
             </div>
         }
 
-        fetch(`https://blog-api-production-2e51.up.railway.app/posts/${id}`)
+        fetch(`${props.serverURL}posts/${id}`)
         .then((res) => res.json())
         .then((data) => {
             setBlogInfo(
@@ -103,7 +103,7 @@ const IndividualPost = (props) => {
             timestamp: Date.now(),
         }
 
-        fetch(`https://blog-api-production-2e51.up.railway.app/posts/${id}`, {
+        fetch(`${props.serverURL}posts/${id}`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(commentInfo)
@@ -115,7 +115,7 @@ const IndividualPost = (props) => {
     const deleteComment = (e) => {
         const commentId = e.target.parentElement.parentElement.getAttribute('dataid');
 
-        fetch(`https://blog-api-production-2e51.up.railway.app/posts/${id}/comments/${commentId}`, {
+        fetch(`${props.serverURL}posts/${id}/comments/${commentId}`, {
             method: 'DELETE',
             headers: { "Content-Type": "application/json" },
         })
