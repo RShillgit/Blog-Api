@@ -47,7 +47,7 @@ function Login(props) {
         e.preventDefault();
         const login_information = {username, password};
 
-        fetch('http://localhost:8080/login', {
+        fetch('https://blog-api-production-2e51.up.railway.app/login', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(login_information)
