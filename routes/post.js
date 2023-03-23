@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
     post.findOne({_id: req.params.id})
     .populate('comments')
-    .then((blog) => {        
+    .then((blog) => {      
         res.json(blog);
     })
 });
