@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react"
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import deleteImg from '../images/delete.png';
 
 const IndividualPost = (props) => {
 
+    const navigate = useNavigate();
     const {id} = useParams();
     const [blogInfo, setBlogInfo] = useState();
     const [commenterName, setCommenterName] = useState("");
@@ -111,7 +112,7 @@ const IndividualPost = (props) => {
             mode: 'cors',
             body: JSON.stringify(commentInfo)
         })
-        .then(window.location.reload());
+        .then(navigate(0));
     }
 
     // Delete Comment
