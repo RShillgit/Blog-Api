@@ -22,7 +22,8 @@ const Post = (props) => {
             
             fetch(`${props.serverURL}posts`, {
                 method: 'GET',
-                headers: {Authorization: token.current}
+                headers: {Authorization: token.current},
+                mode: 'cors'
             })
             // If the status is good, render the page content
             .then((res) => {
@@ -59,6 +60,7 @@ const Post = (props) => {
         fetch(`${props.serverURL}posts`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
+            mode:'cors',
             body: JSON.stringify(blogPostInfo)
         })
         // Then navigate back to home

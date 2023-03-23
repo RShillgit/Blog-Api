@@ -50,6 +50,7 @@ function Login(props) {
         fetch(`${props.serverURL}login`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
+            mode: 'cors',
             body: JSON.stringify(login_information)
         })
         .then((res) => res.json())

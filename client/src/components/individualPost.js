@@ -21,7 +21,9 @@ const IndividualPost = (props) => {
             </div>
         }
 
-        fetch(`${props.serverURL}posts/${id}`)
+        fetch(`${props.serverURL}posts/${id}`, {
+            mode: 'cors'
+        })
         .then((res) => res.json())
         .then((data) => {
             setBlogInfo(
@@ -106,6 +108,7 @@ const IndividualPost = (props) => {
         fetch(`${props.serverURL}posts/${id}`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
+            mode: 'cors',
             body: JSON.stringify(commentInfo)
         })
         .then(window.location.reload());
@@ -118,6 +121,7 @@ const IndividualPost = (props) => {
         fetch(`${props.serverURL}posts/${id}/comments/${commentId}`, {
             method: 'DELETE',
             headers: { "Content-Type": "application/json" },
+            mode: 'cors'
         })
         .then(window.location.reload())
         

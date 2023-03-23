@@ -19,7 +19,9 @@ const UpdatePost = (props) => {
 
         // If there is a token, get the post information to fill the inputs
         if (token.current) {
-            fetch(`${props.serverURL}posts/${postId.id}`)
+            fetch(`${props.serverURL}posts/${postId.id}`, {
+                mode: 'cors'
+            })
             .then((res) => res.json())
             .then((data) => {
                 setTitle(data.title);
@@ -57,6 +59,7 @@ const UpdatePost = (props) => {
         fetch(`${props.serverURL}posts/${postId.id}`, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
+            mode: 'cors',
             body: JSON.stringify(newBlogInfo)
         })
         // Then navigate back to home and refresh

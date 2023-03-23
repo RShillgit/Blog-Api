@@ -25,7 +25,9 @@ function App(props) {
       </div>
     }
 
-    fetch(`${props.serverURL}`)
+    fetch(`${props.serverURL}`, {
+      mode: 'cors'
+    })
       .then((res) => res.json())
       .then((data) => {
         setAllBlogs(
@@ -84,6 +86,7 @@ function App(props) {
     fetch(`${props.serverURL}posts/${postId}`, {
       method: 'DELETE',
       headers: { "Content-Type": "application/json" },
+      mode: 'cors'
     })
     .then(window.location.reload())
   }
