@@ -24,7 +24,6 @@ const IndividualPost = (props) => {
         fetch(`https://blog-api-production-2e51.up.railway.app/posts/${id}`)
         .then((res) => res.json())
         .then((data) => {
-            console.log(data);
             setBlogInfo(
                 <div className="individualBlog">
                     <div className="individualBlog-info">
@@ -109,9 +108,7 @@ const IndividualPost = (props) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(commentInfo)
         })
-        .then((res) => res.json())
-        .then((data) => console.log(data))
-        //.then(window.location.reload());
+        .then(window.location.reload());
     }
 
     // Delete Comment
