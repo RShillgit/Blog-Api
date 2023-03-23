@@ -25,7 +25,7 @@ function App(props) {
       </div>
     }
 
-    fetch("http://localhost:8000")
+    fetch("http://localhost:8080")
       .then((res) => res.json())
       .then((data) => {
         setAllBlogs(
@@ -81,7 +81,7 @@ function App(props) {
 
     const postId = e.target.parentElement.parentElement.getAttribute('blogid');
 
-    fetch(`http://localhost:8000/posts/${postId}`, {
+    fetch(`http://localhost:8080/posts/${postId}`, {
       method: 'DELETE',
       headers: { "Content-Type": "application/json" },
     })
