@@ -10,6 +10,8 @@ const jwtUtils = require('../utils/jwtUtils');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
+  res.set('Access-Control-Allow-Origin', '*');
+
   posts.find({})
   .then(blogs => {
     res.json(blogs)

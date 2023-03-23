@@ -27,6 +27,9 @@ router.post('/', function(req, res, next) {
 
 /* GET specific post. */
 router.get('/:id', function(req, res, next) {
+
+    res.set('Access-Control-Allow-Origin', '*');
+
     post.findOne({_id: req.params.id})
     .populate('comments')
     .then((blog) => {      
