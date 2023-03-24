@@ -25,7 +25,8 @@ function App(props) {
       </div>
     }
 
-    fetch(`/`, { // ${props.serverURL}
+    // ${props.serverURL}
+    fetch(`/`, { 
       mode: 'cors'
     })
       .then((res) => res.json())
