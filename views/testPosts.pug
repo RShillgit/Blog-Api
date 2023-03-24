@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 Test page for making comments, delete later
+
+    form(action='' method='POST')
+    label Name
+        input(type='text' name='name' required=true)
+    label content
+        input(type='password' name='content' required=true)
+    button submit
