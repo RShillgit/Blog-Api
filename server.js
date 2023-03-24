@@ -7,6 +7,8 @@ var logger = require('morgan');
 const mongoose = require("mongoose");
 require('dotenv').config();
 
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 var indexRouter = require('./routes/index');
 var postRouter = require('./routes/post');
 
@@ -39,7 +41,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static(path.join(__dirname, 'client')));
 
-// Prevent CORS Errors
+// Prevent CORS Errors -> DOESNT WORK
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -58,6 +60,14 @@ app.use(passport.initialize());
 /**
  * -----------------------------------------------------------
  */
+
+app.use(
+  '/',
+  createProxyMiddleware({
+    target: 'https://blog-api-production-2e51.up.railway.app/',
+    changeOrigin: true,
+  })
+);
 
 app.use('/', indexRouter);
 app.use('/posts', postRouter);
