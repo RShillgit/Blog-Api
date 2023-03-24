@@ -20,7 +20,7 @@ const Post = (props) => {
         // If there is a token, add it to the auth header of the get request
         if (token.current) {
             
-            fetch(`${props.serverURL}posts`, {
+            fetch(`/posts`, { // ${props.serverURL}posts
                 method: 'GET',
                 headers: {Authorization: token.current},
                 mode: 'cors'
@@ -57,7 +57,7 @@ const Post = (props) => {
         const blogPostInfo = {blogTitle, blogContent};
 
         // POST request to create the new blog
-        fetch(`${props.serverURL}posts`, {
+        fetch(`/posts`, { // ${props.serverURL}posts
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             mode:'cors',

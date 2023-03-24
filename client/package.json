@@ -2,6 +2,7 @@
   "homepage": "rshill-blog-production.up.railway.app",
   "name": "client",
   "version": "0.1.0",
+  "proxy": "https://blog-api-production-2e51.up.railway.app",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
