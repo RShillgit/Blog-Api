@@ -106,13 +106,14 @@ const IndividualPost = (props) => {
             timestamp: Date.now(),
         }
 
+        console.log(`${props.serverURL}posts/${id}`)
         fetch(`${props.serverURL}posts/${id}`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             mode: 'cors',
             body: JSON.stringify(commentInfo)
         })
-        .then(navigate(0));
+        //.then(navigate(0));
     }
 
     // Delete Comment
@@ -124,7 +125,7 @@ const IndividualPost = (props) => {
             headers: { "Content-Type": "application/json" },
             mode: 'cors'
         })
-        .then(window.location.reload())
+        .then(navigate(0))
         
     }
 
