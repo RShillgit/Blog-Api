@@ -31,9 +31,6 @@ router.post('/', function(req, res, next) {
 /* GET specific post. */
 router.get('/:id', function(req, res, next) {
 
-    res.render('testPosts'); // TEST POST REQUESTS ON DEPLOYED DELETE LATER
-
-    /*
     res.set('Access-Control-Allow-Origin', '*');
 
     post.findOne({_id: req.params.id})
@@ -41,7 +38,6 @@ router.get('/:id', function(req, res, next) {
     .then((blog) => {      
         res.json(blog);
     })
-    */
 });
 
 /* POST that creates a comment on a specific post. */
@@ -51,10 +47,10 @@ router.post('/:id', function(req, res, next) {
 
     // Create a new comment with the front end info
     const newComment = new comment({
-        //parent_post: req.params.id,
+        parent_post: req.params.id,
         name: req.body.name,
         text: req.body.text,
-        timestamp: Date.now() // req.body.timestamp
+        timestamp: req.body.timestamp
     })
     newComment.save()
         // Then add the comment to the parent post's comments array
