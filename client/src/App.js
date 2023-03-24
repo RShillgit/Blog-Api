@@ -25,8 +25,7 @@ function App(props) {
       </div>
     }
 
-    // ${props.serverURL}
-    fetch(`/`, { 
+    fetch(`${props.serverURL}`, { 
       mode: 'cors'
     })
       .then((res) => res.json())
@@ -84,7 +83,7 @@ function App(props) {
 
     const postId = e.target.parentElement.parentElement.getAttribute('blogid');
 
-    fetch(`/posts/${postId}`, { // ${props.serverURL}posts/${postId}
+    fetch(`${props.serverURL}posts/${postId}`, { 
       method: 'DELETE',
       headers: { "Content-Type": "application/json" },
       mode: 'cors'

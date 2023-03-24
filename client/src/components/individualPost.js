@@ -22,7 +22,7 @@ const IndividualPost = (props) => {
             </div>
         }
 
-        fetch(`/posts/${id}`, { //${props.serverURL}posts/${id}
+        fetch(`${props.serverURL}posts/${id}`, { 
             mode: 'cors'
         })
         .then((res) => res.json())
@@ -106,7 +106,7 @@ const IndividualPost = (props) => {
             timestamp: Date.now(),
         }
 
-        fetch(`/posts/${id}`, { // ${props.serverURL}posts/${id}
+        fetch(`${props.serverURL}posts/${id}`, { 
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             mode: 'cors',
@@ -119,7 +119,7 @@ const IndividualPost = (props) => {
     const deleteComment = (e) => {
         const commentId = e.target.parentElement.parentElement.getAttribute('dataid');
 
-        fetch(`/posts/${id}/comments/${commentId}`, { //${props.serverURL}posts/${id}/comments/${commentId}
+        fetch(`${props.serverURL}posts/${id}/comments/${commentId}`, { 
             method: 'DELETE',
             headers: { "Content-Type": "application/json" },
             mode: 'cors'

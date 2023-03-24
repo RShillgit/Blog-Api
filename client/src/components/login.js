@@ -47,7 +47,7 @@ function Login(props) {
         e.preventDefault();
         const login_information = {username, password};
 
-        fetch(`/login`, { // ${props.serverURL}login
+        fetch(`${props.serverURL}login`, {  
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             mode: 'cors',
