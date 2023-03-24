@@ -47,7 +47,7 @@ router.post('/:id', function(req, res, next) {
 
     // Create a new comment with the front end info
     const newComment = new comment({
-        parent_post: req.body.parent_post,
+        parent_post: req.params.id,
         name: req.body.name,
         text: req.body.text,
         timestamp: req.body.timestamp
@@ -55,7 +55,7 @@ router.post('/:id', function(req, res, next) {
     newComment.save()
         // Then add the comment to the parent post's comments array
         .then(
-            post.findOne({_id: newComment.parent_post})
+            post.findOne({_id: req.params.id }) //newComment.parent_post
                 .then(individualPost => {
                     individualPost.comments.push(newComment);
                     individualPost.save()

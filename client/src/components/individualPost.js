@@ -100,7 +100,7 @@ const IndividualPost = (props) => {
     const formSubmit = (e) => {
         e.preventDefault();
         const commentInfo = {
-            parent_post: id,
+            //parent_post: id,
             name: commenterName,
             text: commenterComment,
             timestamp: Date.now(),
