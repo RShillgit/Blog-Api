@@ -96,7 +96,7 @@ const IndividualPost = (props) => {
         setCommenterComment(e.target.value);
     }
 
-    // Form submit
+    // Create Comment form submit
     const formSubmit = (e) => {
         e.preventDefault();
         const commentInfo = {
@@ -109,10 +109,11 @@ const IndividualPost = (props) => {
         fetch(`${props.serverURL}posts/${id}`, { 
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            mode: 'cors',
+            crossDomain: true,
+            //mode: 'cors',
             body: JSON.stringify(commentInfo)
         })
-        //.then(navigate(0));
+        .then(navigate(0));
     }
 
     // Delete Comment
