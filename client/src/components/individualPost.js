@@ -131,6 +131,7 @@ const IndividualPost = (props) => {
             mode: 'cors',
         })
         .then(err => console.log(err))
+
         //.then(navigate(0))
         
     }

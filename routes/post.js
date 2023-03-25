@@ -113,6 +113,7 @@ router.delete('/:postId/comments/:commentId', (req, res, next) => {
         comment.deleteOne({ _id: req.params.commentId })
         .catch(err => console.log(err))
     )
+    res.send('Hopefully this removes 404 error')
     next();
 })
 
