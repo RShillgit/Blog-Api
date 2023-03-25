@@ -99,6 +99,10 @@ const IndividualPost = (props) => {
     // Create Comment form submit
     const formSubmit = (e) => {
         e.preventDefault();
+
+        console.log(`Name: ${commenterName}`)
+        console.log(`Comment: ${commenterComment}`)
+
         const commentInfo = {
             //parent_post: id,
             name: commenterName,
@@ -113,7 +117,7 @@ const IndividualPost = (props) => {
             //mode: 'cors',
             body: JSON.stringify(commentInfo)
         })
-        .then(navigate(0));
+        //.then(navigate(0));
     }
 
     // Delete Comment
