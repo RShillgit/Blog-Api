@@ -10,8 +10,6 @@ const jwtUtils = require('../utils/jwtUtils');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  //res.set('Access-Control-Allow-Origin', '*');
-
   posts.find({})
   .then(blogs => {
     res.json(blogs)
@@ -63,14 +61,11 @@ router.post('/register', (req, res, next) => {
 
 /* GET login page */
 router.get('/login', function(req, res, next) {
-  //res.set('Access-Control-Allow-Origin', '*');
   res.render('login');
 })
 
 /* POST login page */
 router.post('/login', function (req, res, next) {
-
-  //res.set('Access-Control-Allow-Origin', '*');
 
   // Look for user in DB
   admin.findOne({ username: req.body.username })

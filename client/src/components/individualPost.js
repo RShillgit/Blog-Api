@@ -100,9 +100,6 @@ const IndividualPost = (props) => {
     const formSubmit = (e) => {
         e.preventDefault();
 
-        console.log(`Name: ${commenterName}`)
-        console.log(`Comment: ${commenterComment}`)
-
         const commentInfo = {
             //parent_post: id,
             name: commenterName,
@@ -113,12 +110,9 @@ const IndividualPost = (props) => {
         fetch(`${props.serverURL}posts/${id}`, { 
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            //crossDomain: true, //TODO
-            //mode: 'no-cors', //TODO: GIVES 503 ERROR INSTEAD OF 404
             body: JSON.stringify(commentInfo)
         })
-        // TODO: COMMENTED OUT SO THE ERROR CAN BE VIEWED
-        //.then(navigate(0)); 
+        .then(navigate(0)); 
     }
 
     // Delete Comment

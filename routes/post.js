@@ -6,14 +6,11 @@ const comment = require('../models/comments');
 
 /* GET that allows admins to access create blog page */
 router.get('/', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    //res.set('Access-Control-Allow-Origin', '*');
     res.json('You are authorized to create a post');
 })
 
 /* POST that creates a post. */
 router.post('/', function(req, res, next) {
-
-    //res.set('Access-Control-Allow-Origin', '*');
 
     const newPost = new post({
         title: req.body.blogTitle,
@@ -34,8 +31,6 @@ router.post('/', function(req, res, next) {
 /* GET specific post. */
 router.get('/:id', function(req, res, next) {
 
-    //res.set('Access-Control-Allow-Origin', '*');
-
     post.findOne({_id: req.params.id})
     .populate('comments')
     .then((blog) => {      
@@ -45,8 +40,6 @@ router.get('/:id', function(req, res, next) {
 
 /* POST that creates a comment on a specific post. */
 router.post('/:id', function(req, res, next) {
-
-    //res.set('Access-Control-Allow-Origin', '*');
 
     // Create a new comment with the front end info
     const newComment = new comment({
@@ -73,8 +66,6 @@ router.post('/:id', function(req, res, next) {
 /* PUT that updates a specific post. */
 router.put('/:id', function(req, res, next) {
 
-    //res.set('Access-Control-Allow-Origin', '*');
-
     post.findOneAndUpdate({ _id: req.params.id }, {
         title: req.body.title,
         text: req.body.content
@@ -87,8 +78,6 @@ router.put('/:id', function(req, res, next) {
 
 /* DELETE that deletes a specific post. */
 router.delete('/:id', function(req, res, next) {
-
-    //res.set('Access-Control-Allow-Origin', '*');
 
     // Delete Post
     post.deleteOne({ _id: req.params.id })
@@ -104,8 +93,6 @@ router.delete('/:id', function(req, res, next) {
 
 /* DELETE specific comment */
 router.delete('/:postId/comments/:commentId', (req, res, next) => {
-
-    //res.set('Access-Control-Allow-Origin', '*');
 
     const commentId = req.params.commentId;
 
