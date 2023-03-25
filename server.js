@@ -61,6 +61,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static(path.join(__dirname, 'client')));
 
+/*
 // Prevent CORS Errors -> TODO: WORKS ON GET REQUESTS ONLY?!?
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'https://rshill-blog-production.up.railway.app/');
@@ -69,6 +70,7 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
+*/
 
 /**
  * ----------------- PASSPORT AUTHENTICATION -----------------
