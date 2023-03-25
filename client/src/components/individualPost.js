@@ -113,8 +113,8 @@ const IndividualPost = (props) => {
         fetch(`${props.serverURL}posts/${id}`, { 
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            crossDomain: true,
-            mode: 'no-cors',
+            crossDomain: true, //TODO
+            mode: 'no-cors', //TODO
             body: JSON.stringify(commentInfo)
         })
         // TODO: COMMENTED OUT SO THE ERROR CAN BE VIEWED
@@ -128,7 +128,7 @@ const IndividualPost = (props) => {
         fetch(`${props.serverURL}posts/${id}/comments/${commentId}`, { 
             method: 'DELETE',
             headers: { "Content-Type": "application/json" },
-            mode: 'cors'
+            mode: 'cors',
         })
         .then(err => console.log(err))
         //.then(navigate(0))

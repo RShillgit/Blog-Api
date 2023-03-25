@@ -43,6 +43,8 @@ router.get('/:id', function(req, res, next) {
 /* POST that creates a comment on a specific post. */
 router.post('/:id', function(req, res, next) {
 
+    res.set('Access-Control-Allow-Origin', '*');
+
     // Create a new comment with the front end info
     const newComment = new comment({
         parent_post: req.params.id,
@@ -59,8 +61,6 @@ router.post('/:id', function(req, res, next) {
                     individualPost.save()
                 })
         )
-
-    //res.set('Access-Control-Allow-Origin', '*');
 
     next();
 });

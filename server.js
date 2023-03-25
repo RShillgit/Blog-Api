@@ -32,6 +32,7 @@ async function main() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+/*
 // ENABLE CORS FROM OUR DOMAINS
 const whitelist = ["http://localhost:3000"]
 const corsOptions = {
@@ -45,25 +46,26 @@ const corsOptions = {
   credentials: true,
 }
 app.use(cors(corsOptions))
+*/
 
-
+/*
 //allow OPTIONS on all resources -> ISNTEAD OF 404 NOW WE GET 503 ERROR
 app.options('*', cors())
-
+*/
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin: ["http://localhost:3000", "https://rshill-blog-production.up.railway.app/"]}));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static(path.join(__dirname, 'client')));
 
-// Prevent CORS Errors -> TODO: DOESNT SEEM TO WORK
+// Prevent CORS Errors -> TODO: WORKS ON GET REQUESTS ONLY?!?
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'https://rshill-blog-production.up.railway.app/');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*'); // "Origin, X-Requested-With, Content-Type, Accept"
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
