@@ -33,6 +33,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 
+//allow OPTIONS on all resources 
+app.options('*', cors())
+
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cors());
@@ -43,7 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Prevent CORS Errors -> DOESNT WORK
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'https://rshill-blog-production.up.railway.app/');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', '*');
   res.setHeader('Access-Control-Allow-Credentials', true);

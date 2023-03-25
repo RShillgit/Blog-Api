@@ -114,10 +114,11 @@ const IndividualPost = (props) => {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             crossDomain: true,
-            //mode: 'cors',
+            mode: 'no-cors',
             body: JSON.stringify(commentInfo)
         })
-        //.then(navigate(0));
+        // TODO: COMMENTED OUT SO THE ERROR CAN BE VIEWED
+        //.then(navigate(0)); 
     }
 
     // Delete Comment
@@ -129,7 +130,8 @@ const IndividualPost = (props) => {
             headers: { "Content-Type": "application/json" },
             mode: 'cors'
         })
-        .then(navigate(0))
+        .then(err => console.log(err))
+        //.then(navigate(0))
         
     }
 
