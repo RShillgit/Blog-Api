@@ -61,8 +61,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static(path.join(__dirname, 'client')));
 
-/*
-// Prevent CORS Errors -> TODO: WORKS ON GET REQUESTS ONLY?!?
+
+// Prevent CORS Errors -> TODO: WORKS, but doesnt solve the issue
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'https://rshill-blog-production.up.railway.app/');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -70,7 +70,7 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
-*/
+
 
 /**
  * ----------------- PASSPORT AUTHENTICATION -----------------
@@ -82,16 +82,6 @@ app.use(passport.initialize());
 /**
  * -----------------------------------------------------------
  */
-
-/* // Proxy Middelware -> TODO: DOESNT WORK
-app.use(
-  '/',
-  createProxyMiddleware({
-    target: 'https://blog-api-production-2e51.up.railway.app/',
-    changeOrigin: true,
-  })
-);
-*/
 
 app.use('/', indexRouter);
 app.use('/posts', postRouter);

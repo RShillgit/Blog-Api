@@ -113,8 +113,8 @@ const IndividualPost = (props) => {
         fetch(`${props.serverURL}posts/${id}`, { 
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            crossDomain: true, //TODO
-            mode: 'no-cors', //TODO
+            //crossDomain: true, //TODO
+            //mode: 'no-cors', //TODO: GIVES 503 ERROR INSTEAD OF 404
             body: JSON.stringify(commentInfo)
         })
         // TODO: COMMENTED OUT SO THE ERROR CAN BE VIEWED
