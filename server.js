@@ -55,16 +55,15 @@ app.options('*', cors())
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(cors({origin: ["http://localhost:3000", "https://rshill-blog-production.up.railway.app/"]}));
+app.use(cors({origin: ["http://localhost:3000", "https://rshill-blog-production.up.railway.app"]}));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static(path.join(__dirname, 'client')));
 
-
 // Prevent CORS Errors -> TODO: WORKS, but doesnt solve the issue
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://rshill-blog-production.up.railway.app/');
+  res.setHeader('Access-Control-Allow-Origin', 'https://rshill-blog-production.up.railway.app');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', '*'); // "Origin, X-Requested-With, Content-Type, Accept"
   res.setHeader('Access-Control-Allow-Credentials', true);
