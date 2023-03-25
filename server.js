@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Prevent CORS Errors 
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', ['https://rshill-blog-production.up.railway.app', "http://localhost:3000"]);
+  res.setHeader('Access-Control-Allow-Origin', 'https://rshill-blog-production.up.railway.app'); // Change to http://localhost:3000 in development
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', '*'); 
   res.setHeader('Access-Control-Allow-Credentials', true);
