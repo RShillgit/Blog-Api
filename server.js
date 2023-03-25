@@ -32,8 +32,22 @@ async function main() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// ENABLE CORS FROM OUR DOMAINS
+const whitelist = ["http://localhost:3000"]
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
+  credentials: true,
+}
+app.use(cors(corsOptions))
 
-//allow OPTIONS on all resources 
+
+//allow OPTIONS on all resources -> ISNTEAD OF 404 NOW WE GET 503 ERROR
 app.options('*', cors())
 
 
@@ -45,7 +59,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static(path.join(__dirname, 'client')));
 
-// Prevent CORS Errors -> DOESNT WORK
+// Prevent CORS Errors -> TODO: DOESNT SEEM TO WORK
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'https://rshill-blog-production.up.railway.app/');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -65,7 +79,7 @@ app.use(passport.initialize());
  * -----------------------------------------------------------
  */
 
-/* // Proxy Middelware -> DOESNT WORK
+/* // Proxy Middelware -> TODO: DOESNT WORK
 app.use(
   '/',
   createProxyMiddleware({
