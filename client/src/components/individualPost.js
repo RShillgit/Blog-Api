@@ -130,9 +130,7 @@ const IndividualPost = (props) => {
             headers: { "Content-Type": "application/json" },
             mode: 'cors',
         })
-        .then(err => console.log(err))
-
-        //.then(navigate(0))
+        .then(navigate(0))
         
     }
 

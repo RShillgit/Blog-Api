@@ -26,6 +26,9 @@ router.post('/', function(req, res, next) {
             res.send(user);
         })
         .catch(err => next(err));
+
+    // Send a result back to front end so there is no 404 
+    res.send('No 404')
 });
 
 /* GET specific post. */
@@ -62,6 +65,8 @@ router.post('/:id', function(req, res, next) {
                 })
         )
 
+    // Send a result back to front end so there is no 404 
+    res.send('No 404')
     next();
 });
 
@@ -75,6 +80,9 @@ router.put('/:id', function(req, res, next) {
         text: req.body.content
     })
     .catch(err => console.log(err))
+
+    // Send a result back to front end so there is no 404 
+    res.send('No 404')
 });
 
 /* DELETE that deletes a specific post. */
@@ -89,6 +97,9 @@ router.delete('/:id', function(req, res, next) {
     // Delete any comments associated with this post
     comment.deleteMany({ parent_post: req.params.id })
         .catch(err => console.log(err));
+
+    // Send a result back to front end so there is no 404 
+    res.send('Remove 404');
 });
 
 /* DELETE specific comment */
@@ -113,7 +124,8 @@ router.delete('/:postId/comments/:commentId', (req, res, next) => {
         comment.deleteOne({ _id: req.params.commentId })
         .catch(err => console.log(err))
     )
-    res.send('Hopefully this removes 404 error')
+    // Send a result back to front end so there is no 404 
+    res.send('Remove 404')
     next();
 })
 
