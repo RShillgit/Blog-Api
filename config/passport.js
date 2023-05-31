@@ -17,7 +17,6 @@ const verifyCallback = (username, password, done) => {
                 return done(err);
             }
             if (user === null) {
-                // return done(null);
                 return done(null, false, {message: 'Username Does Not Exist'});
             }
 
@@ -26,7 +25,6 @@ const verifyCallback = (username, password, done) => {
             if (isValid) {
                 return done(null, user);
             } else {
-                //return done(null, false);
                 return done(null, false, {message: 'Incorrect Username/Password Combination'});
             }
         });
@@ -41,7 +39,7 @@ passport.use(strategy);
 */
 const jwtOptions = {
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey: process.env.secret_string, // TODO: Change to .env Secret
+    secretOrKey: process.env.secret_string, 
 };
 const jwtStrategy = new JWTStrategy(jwtOptions, (payload, done) => {
     Admin.findOne({_id: payload.sub})
