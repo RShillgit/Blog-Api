@@ -11,8 +11,8 @@ import UpdatePost from "./components/updatePost";
 
 
 const RouteSwitch = () => {
-  // Server URL that can be switched to 'http://localhost:8080/' when in development or 'https://blog-api-production-2e51.up.railway.app/' in production
-  const serverURL = 'https://blog-api-production-2e51.up.railway.app/';
+  // Server URL that can be switched to 'http://localhost:8080/' when in development or 'https://blog-api-production-1efd.up.railway.app/' in production
+  const serverURL = 'https://blog-api-production-1efd.up.railway.app/';
   return (
     <BrowserRouter>
       <Routes>
